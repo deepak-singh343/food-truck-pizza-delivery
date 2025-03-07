@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { GiFoodTruck } from "react-icons/gi";
+import { AppContextProvider } from "@/context/AppContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="z-1 absolute top-6 left-6 text-white">
+          <GiFoodTruck size={60} />
+        </div>
+        {/* <AppContextProvider> */}
         {children}
+        {/* </AppContextProvider> */}
       </body>
     </html>
   );
