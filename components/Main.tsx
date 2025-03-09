@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "./Navigation";
 
-const Header = () => {
+const Main = () => {
   return (
     <div
       className="flex flex-col text-white w-full h-screen md:p-8 p-4
@@ -19,4 +19,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Main;

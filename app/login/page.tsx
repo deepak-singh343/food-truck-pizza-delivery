@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent } from "react";
+import { GiFoodTruck } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 
 export default function Login() {
@@ -34,7 +35,14 @@ export default function Login() {
       className="opacity-100 flex justify-center items-center  h-screen bg-[url('/banner.jpg')]
     bg-cover md:bg-[url(https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png)]"
     >
+      <div
+        id="logo"
+        className="absolute top-4 z-1 md:left-10 left-6 text-white"
+      >
+        <GiFoodTruck size={60} />
+      </div>
       <div className="fixed top-0 left-0 w-full h-full bg-black opacity-70 flex justify-center items-center"></div>
+
       <div className="z-1 md:w-[40%] w-[85%] bg-white flex rounded flex-col justify-center px-4 py-8 md:px-8">
         <div className="flex justify-end relative bottom-4 cursor-pointer">
           <Link href="/">

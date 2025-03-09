@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
+import { GiFoodTruck } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 
 export default function Register() {
@@ -36,7 +37,6 @@ export default function Register() {
         email,
         password,
       });
-      console.log("response", response);
       if (response && response.data.status == 200) {
         router.push("/login");
       }
@@ -49,7 +49,12 @@ export default function Register() {
       className="opacity-100 flex justify-center items-center  h-screen bg-[url('/banner.jpg')]
     bg-cover md:bg-[url(https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png)]"
     >
-      {}
+      <div
+        id="logo"
+        className="absolute top-4 z-1 md:left-10 left-6 text-white"
+      >
+        <GiFoodTruck size={60} />
+      </div>
       <div className="fixed top-0 left-0 w-full h-full bg-black opacity-70 flex justify-center items-center"></div>
       <div className="z-1 md:w-[45%] w-[85%] bg-white flex rounded flex-col justify-center px-8 py-6 md:px-12">
         <div className="flex justify-end relative bottom-4 md:left-8 left-4 cursor-pointer">

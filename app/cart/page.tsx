@@ -1,8 +1,6 @@
 "use client";
+import Cart from "@/components/Cart";
 import HomeHeader from "@/components/HomeComponents/HomeHeader";
-import Menu from "@/components/HomeComponents/Menu/Menu";
-import ResturantInfo from "@/components/HomeComponents/ResturantInfo";
-import { AppContextProvider } from "@/context/AppContext";
 import { getUserData } from "@/utils/helper";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -11,7 +9,7 @@ interface User {
   name: string;
   email: string;
 }
-const Home = () => {
+const page = () => {
   const route = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const handleLogout = async () => {
@@ -36,17 +34,13 @@ const Home = () => {
     getData();
   }, []);
   return (
-    <div className="bg-gray-50 h-full flex flex-col">
+    <div className="bg-gray-50 h-screen flex flex-col">
       {user ? (
         <>
           <div className="sticky top-0 bg-gray-50 z-1">
             <HomeHeader user={user} />
-            <div className="px-6 py-4 border-b border-gray-300">
-              <ResturantInfo />
-            </div>
           </div>
-
-          <Menu />
+          <Cart />
         </>
       ) : (
         ""
@@ -55,4 +49,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default page;

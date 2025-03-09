@@ -25,17 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div id="logo" className="z-1 absolute top-2 left-6 text-white">
-          <GiFoodTruck size={60} />
-        </div>
-        {/* <AppContextProvider> */}
-        {children}
-        {/* </AppContextProvider> */}
-      </body>
-    </html>
+    <AppContextProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </html>
+    </AppContextProvider>
   );
 }

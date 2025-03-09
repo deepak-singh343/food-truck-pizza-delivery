@@ -1,6 +1,7 @@
 import User from "@/models/User";
 import { connectToDB } from "@/utils/database";
 import { jwtVerify } from "jose";
+import { JWTExpired } from "jose/errors";
 import { NextRequest } from "next/server";
 
 export const GET = async (req: NextRequest) => {
@@ -17,7 +18,7 @@ export const GET = async (req: NextRequest) => {
     const secretKey = new TextEncoder().encode(process.env.SESSION_SECRET);
     const { payload } = await jwtVerify(token, secretKey);
     await connectToDB();
-    const user = await User.findById(payload.id).select("-password"); // Exclude password
+    const user = await User.findById(payload.id).select("-password");
 
     if (!user) {
       return new Response(JSON.stringify({ message: "User not found" }), {
@@ -29,8 +30,16 @@ export const GET = async (req: NextRequest) => {
       status: 200,
     });
   } catch (error) {
-    return new Response(JSON.stringify({ message: "Internal server error" }), {
-      status: 500,
-    });
+    if (error instanceof JWTExpired) {
+      return new Response(JSON.stringify({ message: "Token expired" }), {
+        status: 401,
+      });
+    }
+    return new Response(
+      JSON.stringify({ message: "Internal server error" + error }),
+      {
+        status: 500,
+      }
+    );
   }
 };
