@@ -84,12 +84,12 @@ const Payment = ({ amount }: totalAmount) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded shadow-md text-center">
+    <div className="p-6 bg-white rounded shadow-md text-center h-fit">
       <h1 className="text-2xl font-bold mb-4">Make a Payment</h1>
       <p className="mb-2">Amount: ₹{amount}</p>
       <button
         onClick={handlePayment}
-        className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600"
+        className="bg-blue-500 cursor-pointer text-white px-6 py-2 rounded-md hover:bg-blue-600"
       >
         Pay Now
       </button>

@@ -48,21 +48,9 @@ const CheckoutPage = () => {
           <div className="sticky top-0 bg-gray-50 z-1">
             <HomeHeader user={user} />
           </div>
-          <div className="flex md:flex-row flex-col-reverse md:py-8 py-4 md:px-8 px-4 justify-between gap-8">
-            <div className="md:w-[80%] w-full flex flex-col gap-8">
-              <UserInfo user={user} heading="User Details" />
-              <Payment amount={totalPrice} />
-            </div>
-            <div className="rounded flex flex-col gap-4 bg-white md:px-4 px-2 md:py-2 py-2 shadow-md h-fit md:w-[10rem] w-full">
-              <div className="flex justify-between">
-                <span>Items: </span>
-                <span className="font-semibold"> {totalQuantity}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Total: </span>
-                <span className="font-semibold"> {totalPrice}</span>
-              </div>
-            </div>
+          <div className="w-full flex flex-col md:justify-between justify-start md:flex-row gap-8 p-8">
+            <UserInfo user={user} heading="User Details" />
+            <Payment amount={totalPrice} />
           </div>
         </>
       ) : (

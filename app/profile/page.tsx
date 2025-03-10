@@ -28,7 +28,7 @@ const CartPage = () => {
           <div className="sticky top-0 bg-gray-50 z-1">
             <HomeHeader user={user} />
           </div>
-          <div className="p-8">
+          <div className="p-8 flex justify-center">
             <UserInfo user={user} heading="Change User Details" />
           </div>
         </>

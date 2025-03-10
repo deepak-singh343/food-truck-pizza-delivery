@@ -65,7 +65,7 @@ const UserInfo = ({ user, heading }: UserInfoProps) => {
   };
 
   return (
-    <div className="md:px-8 px-4 py-4 bg-white">
+    <div className="md:px-8 px-4 py-4 bg-white md:w-[75%] w-full">
       <h1 className="text-4xl mb-4">{heading}</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -103,7 +103,7 @@ const UserInfo = ({ user, heading }: UserInfoProps) => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded font-semibold hover:bg-blue-600"
+            className="bg-blue-500 cursor-pointer text-white px-4 py-2 rounded font-semibold hover:bg-blue-600"
           >
             Update
           </button>
