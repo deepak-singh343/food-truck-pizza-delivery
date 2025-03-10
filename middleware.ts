@@ -10,7 +10,7 @@ export function middleware(req: NextRequest) {
   }
 
   // If user is NOT logged in, restrict access to protected routes
-  if (!token && ["/home", "/dashboard"].includes(pathname)) {
+  if (!token && ["/home", "/cart", "/checkout"].includes(pathname)) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
@@ -19,5 +19,5 @@ export function middleware(req: NextRequest) {
 
 // Apply middleware to specific routes
 export const config = {
-  matcher: ["/login", "/register", "/home", "/cart"],
+  matcher: ["/login", "/register", "/home", "/cart", "/checkout"],
 };

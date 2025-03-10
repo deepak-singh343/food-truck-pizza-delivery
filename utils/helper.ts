@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getUserData = async () => {
   try {
-    const response = await axios.get("/api/profile");
+    const response = await axios.get("/api/getUser");
     return response;
   } catch (error: any) {
     return {

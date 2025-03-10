@@ -8,6 +8,7 @@ export const POST = async (req: Request) => {
 
     // Check if user exists
     const user = await User.findOne({ email });
+    console.log(user);
     if (!user) {
       return new Response(
         JSON.stringify({
@@ -31,11 +32,12 @@ export const POST = async (req: Request) => {
 
     // Generate token
     const token = await user.getJWT();
+    const { password: _, ...userData } = user.toObject();
 
     return new Response(
       JSON.stringify({
         message: "Login successful",
-        token,
+        data: userData,
       }),
       {
         status: 200,

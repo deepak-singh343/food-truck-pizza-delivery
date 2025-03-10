@@ -1,4 +1,5 @@
 "use client";
+import { getUserData } from "@/utils/helper";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -6,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { GiFoodTruck } from "react-icons/gi";
 import { AppContext } from "@/context/AppContext";
 import { BsCart } from "react-icons/bs";
+import Notification from "../Notification";
 
 interface User {
   name: string;
@@ -22,7 +24,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ user }) => {
   if (!context) {
     throw new Error("context not found");
   }
-  const { cartItems } = context;
+  const { cartItems, notification } = context;
 
   const navigate = useRouter();
   const [showSettings, setShowSettings] = useState(false);
@@ -43,15 +45,21 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ user }) => {
     navigate.push("/cart");
   };
 
-  const handleProfile = () => {};
+  const handleProfile = () => {
+    navigate.push("/profile");
+  };
 
   return (
     <div className="flex h-[5rem] min-h-[5rem] justify-end items-center px-6 py-4 border border-gray-200">
+      {notification.show && <Notification notification={notification} />}
       <div id="logo" className="z-1 absolute top-2 left-6 cursor-pointer">
         <GiFoodTruck size={60} onClick={() => navigate.push("/home")} />
       </div>
       <div className="flex gap-4 items-center">
-        <div className="cursor-pointer h-10 w-10 p-4 bg-blue-400 rounded-full flex justify-center items-center text-white">
+        <div
+          onClick={handleProfile}
+          className="cursor-pointer h-10 w-10 p-4 bg-blue-400 rounded-full flex justify-center items-center text-white"
+        >
           {user?.name?.[0].toUpperCase()}
         </div>
         <div className="relative cursor-pointer">

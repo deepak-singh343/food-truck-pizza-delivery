@@ -2,39 +2,32 @@
 import HomeHeader from "@/components/HomeComponents/HomeHeader";
 import Menu from "@/components/HomeComponents/Menu/Menu";
 import ResturantInfo from "@/components/HomeComponents/ResturantInfo";
-import { AppContextProvider } from "@/context/AppContext";
+import { AppContext, AppContextProvider } from "@/context/AppContext";
 import { getUserData } from "@/utils/helper";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 interface User {
   name: string;
   email: string;
 }
 const Home = () => {
-  const route = useRouter();
-  const [user, setUser] = useState<User | null>(null);
-  const handleLogout = async () => {
-    await axios.post("/api/auth/logout");
-    route.push("/login");
+  // const context = useContext(AppContext);
+  // if (!context) {
+  //   throw new Error("Context not found");
+  // }
+  const [user, setUser] = useState();
+
+  const getUser = async () => {
+    const data = await getUserData();
+    setUser(data.data.data);
+    console.log(data);
   };
-  const getData = async () => {
-    try {
-      const res = await getUserData();
-      if (res?.status == 401) {
-        handleLogout();
-      } else {
-        if (res?.data) {
-          setUser(res.data.data);
-        }
-      }
-    } catch (error) {
-      console.error("Failed to fetch user data:", error);
-    }
-  };
+
   useEffect(() => {
-    getData();
+    getUser();
   }, []);
+
   return (
     <div className="bg-gray-50 h-full flex flex-col">
       {user ? (

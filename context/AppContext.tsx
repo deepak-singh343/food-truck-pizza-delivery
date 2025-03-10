@@ -25,6 +25,7 @@ type CartItemType = {
 type UserType = {
   name: string;
   email: string;
+  address: string;
 };
 
 type AppContextType = {

@@ -1,5 +1,5 @@
 "use client";
-import Cart from "@/components/Cart";
+import UserInfo from "@/components/CheckoutComponents/UserInfo";
 import HomeHeader from "@/components/HomeComponents/HomeHeader";
 import { AppContext } from "@/context/AppContext";
 import { getUserData } from "@/utils/helper";
@@ -28,7 +28,9 @@ const CartPage = () => {
           <div className="sticky top-0 bg-gray-50 z-1">
             <HomeHeader user={user} />
           </div>
-          <Cart />
+          <div className="p-8">
+            <UserInfo user={user} heading="Change User Details" />
+          </div>
         </>
       ) : (
         ""

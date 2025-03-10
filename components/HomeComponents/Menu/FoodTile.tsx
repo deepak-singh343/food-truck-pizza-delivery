@@ -52,7 +52,7 @@ const FoodTile = ({ item }: any) => {
   return (
     <div className="flex justify-between bg-white py-2 px-2 rounded shadow-md">
       <div className="flex gap-4">
-        <div className="w-45 h-45 rounded overflow-hidden relative">
+        <div className="md:w-45 md:h-45 w-30 h-30 rounded  relative">
           <Image
             src={item.imageUrl}
             alt="food"
@@ -69,6 +69,34 @@ const FoodTile = ({ item }: any) => {
               <div className="w-1 h-1 bg-green-600 rounded-full"></div>
             ) : (
               <div className="w-1 h-1 bg-red-600 rounded-full"></div>
+            )}
+          </div>
+          <div className="flex md:hidden items-center justify-center relative top-[-1rem]">
+            {quantity > 0 ? (
+              <div className="bg-white flex items-center border border-red-500 rounded">
+                <button
+                  onClick={handleDecreaseQuantity}
+                  className="cursor-pointer px-3 py-1 text-red-500 font-semibold"
+                >
+                  -
+                </button>
+                <span className="px-4 text-red-500 font-semibold">
+                  {quantity}
+                </span>
+                <button
+                  onClick={handleIncreaseQuantity}
+                  className="cursor-pointer px-3 py-1 text-red-500 font-semibold"
+                >
+                  +
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={handleAddToCart}
+                className="bg-white cursor-pointer rounded text-red-500 font-semibold px-4 py-1 flex justify-center items-center border border-red-500"
+              >
+                ADD
+              </button>
             )}
           </div>
         </div>
@@ -95,7 +123,7 @@ const FoodTile = ({ item }: any) => {
           )}
         </div>
       </div>
-      <div className="flex items-center mr-2">
+      <div className="md:flex hidden items-center mr-2">
         {quantity > 0 ? (
           <div className="flex items-center border border-red-500 rounded">
             <button

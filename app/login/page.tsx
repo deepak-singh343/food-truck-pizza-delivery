@@ -1,13 +1,19 @@
 "use client";
+import { AppContext } from "@/context/AppContext";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useContext } from "react";
 import { GiFoodTruck } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 
 export default function Login() {
   const router = useRouter();
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("Context not found");
+  }
+  const { user, setUser, setNotification } = context;
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -19,9 +25,15 @@ export default function Login() {
       email,
       password,
     });
-    console.log("response", response);
     if (response && response.status == 200) {
+      console.log(response);
+      setUser(response.data.data);
       router.push("/home");
+      setNotification({
+        show: true,
+        message: "Logged in successfully",
+        type: "success",
+      });
     }
 
     // if (response.ok) {

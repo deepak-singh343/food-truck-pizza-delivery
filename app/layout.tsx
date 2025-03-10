@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { GiFoodTruck } from "react-icons/gi";
 import { AppContextProvider } from "@/context/AppContext";
 
 const geistSans = Geist({
